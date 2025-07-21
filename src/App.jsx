@@ -1,19 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Heart, Eye, EyeOff, Plus, Minus } from 'lucide-react';
-// import Counter from './Components/Counter.jsx';
-import LikeButton from './Components/LikeButton.jsx';
-// import SecretText from './Components/SecretText.jsx';
-// import { useState } from 'react';
 
 function App() {
   // TODO: Add state here using useState hooks
-  // const [count, setCount] = useState(0);
-  // const [likes, setLikes] = useState(0);
-  // const [secret, setSecret] = useState('');
+    const [likes, setLikes] = useState(0);
+  const [count, setCount] = useState(0);
+  const [secret, setSecret] = useState('');
 
-  // const clickHandler = () => {
-  //   setCount(count + 1);
-  // };
+  const clickHandlerLikes = () => {
+    setLikes(likes + 1);
+  };
+  const clickHandlerPlus = () => {
+    setCount(count + 1);
+  };
+  const clickHandlerMinus = () => {
+    setCount(count - 1);
+  };
+  const secretText = () => {
+    setSecret('You have $100 in your wallet!');
+  };
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8">
@@ -29,15 +35,15 @@ function App() {
           </h2>
           <div className="flex items-center space-x-3">
             <button
-              onClick={clickHandler}
               className="flex items-center space-x-2 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition-colors"
               // TODO: Add onClick handler to increase likes
+              onClick={clickHandlerLikes}
             >
               <Heart className="w-4 h-4" />
               <span>Like</span>
             </button>
             <span className="text-gray-600">
-              {/* TODO: Replace with dynamic likes count */}0 likes
+              {likes} likes
             </span>
           </div>
         </div>
@@ -48,18 +54,19 @@ function App() {
           <div className="flex items-center justify-center space-x-4">
             <button
               className="flex items-center justify-center w-10 h-10 bg-red-500 hover:bg-red-600 text-white rounded-full transition-colors"
-              // TODO: Add onClick handler to decrease count
+              onClick={clickHandlerMinus}
             >
               <Minus className="w-4 h-4" />
             </button>
 
             <span className="text-2xl font-bold text-gray-800 min-w-[3rem] text-center">
-              {/* TODO: Replace with dynamic count */}0
+              {count}
             </span>
 
             <button
               className="flex items-center justify-center w-10 h-10 bg-green-500 hover:bg-green-600 text-white rounded-full transition-colors"
               // TODO: Add onClick handler to increase count
+              onClick={clickHandlerPlus}
             >
               <Plus className="w-4 h-4" />
             </button>
@@ -74,11 +81,12 @@ function App() {
           </h2>
           <button
             className="flex items-center space-x-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors"
-            // TODO: Add onClick handler to toggle text visibility
+            // TODO: Add onClick handler to toggle text visibility 
+            onClick={setSecret}
           >
             <Eye className="w-4 h-4" />
             {/* TODO: Change icon and text based on visibility state */}
-            <span>Show Secret Text</span>
+            <span>{setSecret}Show Secret Text</span>
           </button>
 
           {/* TODO: Conditionally render this text based on state */}
