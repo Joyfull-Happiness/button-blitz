@@ -5,7 +5,7 @@ function App() {
   // TODO: Add state here using useState hooks
     const [likes, setLikes] = useState(0);
   const [count, setCount] = useState(0);
-  const [secret, setSecret] = useState('');
+  const [secret, setSecret] = useState(false);
 
   const clickHandlerLikes = () => {
     setLikes(likes + 1);
@@ -16,9 +16,9 @@ function App() {
   const clickHandlerMinus = () => {
     setCount(count - 1);
   };
-  const secretText = () => {
-    setSecret('You have $100 in your wallet!');
-  };
+  // const secretText = () => {
+  //   setSecret('You have $100 in your wallet!');
+  // };
 
 
   return (
@@ -82,21 +82,27 @@ function App() {
           <button
             className="flex items-center space-x-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors"
             // TODO: Add onClick handler to toggle text visibility 
-            onClick={setSecret}
+            // this onClick handler is a arrow function that is setting the secret to not show using the "not" operator "!
+            // on click if there is a previous state don't show it
+            onClick={() => setSecret(prev => !prev)}
+
           >
             <Eye className="w-4 h-4" />
             {/* TODO: Change icon and text based on visibility state */}
-            <span>{setSecret}Show Secret Text</span>
+            <span>{secret ? "Hide Secret Text" : "Show Secret Text"}</span>
+
           </button>
 
           {/* TODO: Conditionally render this text based on state */}
           {/* Remove the 'hidden' class and use conditional rendering instead */}
-          <div className="hidden mt-3 p-3 bg-yellow-100 rounded border-l-4 border-yellow-500">
-            <p className="text-yellow-800">
-              🎉 Congratulations! You've successfully added state to show/hide
-              this text!
-            </p>
-          </div>
+          {/* here we're I am using short-circuit conditional rendering via the && symbol which is saying if the secret is true (&&) sho the following*/}
+          {secret && (
+  <div className="mt-3 p-3 bg-yellow-100 rounded border-l-4 border-yellow-500">
+    <p className="text-yellow-800">
+      🎉 Congratulations! You've successfully added state to show/hide this text!
+    </p>
+  </div>
+)}
         </div>
 
         {/* Instructions */}
