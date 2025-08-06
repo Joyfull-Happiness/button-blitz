@@ -16,9 +16,7 @@ function App() {
   const clickHandlerMinus = () => {
     setCount(count - 1);
   };
-  // const secretText = () => {
-  //   setSecret('You have $100 in your wallet!');
-  // };
+ 
 
 
   return (
@@ -95,7 +93,7 @@ function App() {
 
           {/* TODO: Conditionally render this text based on state */}
           {/* Remove the 'hidden' class and use conditional rendering instead */}
-          {/* here we're I am using short-circuit conditional rendering via the && symbol which is saying if the secret is true (&&) sho the following*/}
+          {/* here we're I am using conditional rendering via the && symbol which is saying if the secret is true (&&) sho the following*/}
           {secret && (
   <div className="mt-3 p-3 bg-yellow-100 rounded border-l-4 border-yellow-500">
     <p className="text-yellow-800">
